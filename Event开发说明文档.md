@@ -55,5 +55,5 @@
 ##Git
     Git地址：https://github.com/NE14HZ/EvnetsApp
     
-    Git使用：拉取分支，注意别直接拉main分支！提交前需要先Fetch和Merge，并解决可能的冲突
+    Git使用：拉取分支，注意别直接拉main分支！提交前需要先Fetch和Merge(两步都要进行)，并解决可能的冲突
 -------
