@@ -83,6 +83,15 @@
 			<version>2.0.0.RELEASE</version>
 		</dependency>
 
+		<!--  yyyy-MM-dd HH:mm:ss
+		@JsonFormat(pattern = " yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
+		private Date birthday;
+		-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
