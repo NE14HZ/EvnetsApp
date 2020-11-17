@@ -17,10 +17,8 @@
 	
 ###数据库：
 	MySQL
-		host: 47.108.164.124
-		port: 3306
-		username: root
-		password: ABCabc123
+	   版本：8.0.21
+	   管理工具：Navicat
 		
 ###服务器：
     阿里云
