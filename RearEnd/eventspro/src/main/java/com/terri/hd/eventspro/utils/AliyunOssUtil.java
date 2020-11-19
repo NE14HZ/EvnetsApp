@@ -3,18 +3,24 @@ package com.terri.hd.eventspro.utils;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.CannedAccessControlList;
-import com.aliyun.oss.model.CreateBucketRequest;
-import com.aliyun.oss.model.PutObjectRequest;
-import com.aliyun.oss.model.PutObjectResult;
+import com.aliyun.oss.model.*;
 import com.terri.hd.eventspro.config.OssConfig;
+import com.terri.hd.eventspro.controller.EventsController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
 public class AliyunOssUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(EventsController.class);
+
+    private static String fileUrl = null;
+
     public static String upload(File file){
         String endpoint = OssConfig.endpoint;
         String accessKeyId = OssConfig.accessKeyId;
@@ -25,6 +31,8 @@ public class AliyunOssUtil {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String dateStr = format.format(new Date());
 
+        UUID uuid = UUID.randomUUID();
+
         if(null == file){
             return null;
         }
@@ -32,29 +40,35 @@ public class AliyunOssUtil {
         OSSClient ossClient = new OSSClient(endpoint,accessKeyId,accessKeySecret);
         try {
             //容器不存在，就创建
-            if(! ossClient.doesBucketExist(bucketName)){
+            if(!ossClient.doesBucketExist(bucketName)){
                 ossClient.createBucket(bucketName);
                 CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
                 createBucketRequest.setCannedACL(CannedAccessControlList.PublicRead);
                 ossClient.createBucket(createBucketRequest);
             }
             //创建文件路径
-            String fileUrl = fileHost+"/"+(dateStr + "/" + UUID.randomUUID().toString().replace("-","")+"-"+file.getName());
+            fileUrl = fileHost+"/"+(dateStr + "/" + uuid.toString().replace("-","")+"-"+file.getName());
+
+            //获取访问URL
+            Date expiration = new Date(new Date().getTime() + 3600 * 1000);
+            GeneratePresignedUrlRequest generatePresignedUrlRequest;
+            generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, fileUrl);
+            generatePresignedUrlRequest.setExpiration(expiration);
+            URL url = ossClient.generatePresignedUrl(generatePresignedUrlRequest);
             //上传文件
             PutObjectResult result = ossClient.putObject(new PutObjectRequest(bucketName, fileUrl, file));
             //设置权限 这里是公开读
             ossClient.setBucketAcl(bucketName,CannedAccessControlList.PublicRead);
             if(null != result){
-                return fileUrl;
+                return url.toString();
             }
-        }catch (OSSException oe){
-            System.out.println(oe.getMessage());
         }catch (ClientException ce){
-            System.out.println(ce.getMessage());
+            logger.info("", ce);
         }finally {
             //关闭
             ossClient.shutdown();
         }
         return null;
     }
+
 }

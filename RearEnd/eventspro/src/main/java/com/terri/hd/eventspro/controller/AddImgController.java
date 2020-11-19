@@ -1,6 +1,8 @@
 package com.terri.hd.eventspro.controller;
 
 import com.terri.hd.eventspro.utils.AliyunOssUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,8 @@ import java.io.FileOutputStream;
 @RestController
 @RequestMapping("/upload")
 public class AddImgController {
+
+    private static final Logger logger = LoggerFactory.getLogger(EventsController.class);
 
     /**
      * 文件上传
@@ -34,9 +38,9 @@ public class AddImgController {
                 }
             }
         }catch (Exception ex){
-            ex.printStackTrace();
+            logger.info("", ex);
         }
         //返回路径回前端
-        return  uploadUrl;
+        return uploadUrl;
     }
 }
