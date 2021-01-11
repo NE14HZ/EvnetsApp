@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="javaMapperPackage" value="com.terri.hd.eventspro.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/eventspro/src/main/java" />
+        <option name="javaModelPackage" value="com.terri.hd.eventspro.pojo" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/eventspro/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="eventspro" />
+        <option name="lombokAllArgConstructor" value="true" />
+        <option name="lombokDataAnnotation" value="true" />
+        <option name="lombokNoArgsConstructor" value="true" />
+        <option name="mapperAnnotaion" value="true" />
+        <option name="modelAddToString" value="true" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="eventspro">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.terri.hd.eventspro.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/eventspro/src/main/java" />
+                  <option name="javaModelPacakge" value="com.terri.hd.eventspro.pojo" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/eventspro/src/main/java" />
+                  <option name="xmlPackage" value="mapper" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/eventspro/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="p3CComment" value="true" />
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="acitvity_db:event_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="EventUser" />
+                  <option name="moduleName" value="eventspro" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="acitvity_db:user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="User" />
+                  <option name="moduleName" value="eventspro" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="xmlMapperPackage" value="mapper" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/eventspro/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

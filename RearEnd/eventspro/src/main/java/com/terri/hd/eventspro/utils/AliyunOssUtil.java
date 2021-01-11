@@ -2,10 +2,9 @@ package com.terri.hd.eventspro.utils;
 
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.*;
 import com.terri.hd.eventspro.config.OssConfig;
-import com.terri.hd.eventspro.controller.EventsController;
+import com.terri.hd.eventspro.controller.FBEventController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +16,7 @@ import java.util.UUID;
 
 public class AliyunOssUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(EventsController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FBEventController.class);
 
     private static String fileUrl = null;
 

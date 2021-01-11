@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.terri.hd.eventspro.mapper.UserEventMapper">
+  <resultMap id="BaseResultMap" type="com.terri.hd.eventspro.pojo.UserEvent">
+    <!--@mbg.generated-->
+    <!--@Table event_user-->
+    <id column="event_uuid" jdbcType="VARCHAR" property="eventUuid" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="event_cate" jdbcType="VARCHAR" property="eventCate" />
+    <result column="event_city" jdbcType="VARCHAR" property="eventCity" />
+    <result column="event_location" jdbcType="VARCHAR" property="eventLocation" />
+    <result column="event_address" jdbcType="VARCHAR" property="eventAddress" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="event_detail" jdbcType="LONGVARCHAR" property="eventDetail" />
+    <result column="event_img" jdbcType="LONGVARCHAR" property="eventImg" />
+    <result column="publisher_openid" jdbcType="VARCHAR" property="publisherOpenId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    event_uuid, event_name, event_cate, event_city, event_location, event_address, start_time, 
+    end_time, event_detail, event_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from event_user
+    where event_uuid = #{eventUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from event_user
+    where event_uuid = #{eventUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.terri.hd.eventspro.pojo.UserEvent">
+    <!--@mbg.generated-->
+    insert into event_user (event_uuid, event_name, event_cate,
+      event_city, event_location, event_address, 
+      start_time, end_time, event_detail, 
+      event_img, publisher_openid)
+    values (#{eventUuid,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, #{eventCate,jdbcType=VARCHAR}, 
+      #{eventCity,jdbcType=VARCHAR}, #{eventLocation,jdbcType=VARCHAR}, #{eventAddress,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=DATETIMEOFFSET}, #{endTime,jdbcType=DATETIMEOFFSET}, #{eventDetail,jdbcType=LONGVARCHAR},
+      #{eventImg,jdbcType=LONGVARCHAR}, #{publisherOpenId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.terri.hd.eventspro.pojo.UserEvent">
+    <!--@mbg.generated-->
+    insert into event_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventUuid != null">
+        event_uuid,
+      </if>
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="eventCate != null">
+        event_cate,
+      </if>
+      <if test="eventCity != null">
+        event_city,
+      </if>
+      <if test="eventLocation != null">
+        event_location,
+      </if>
+      <if test="eventAddress != null">
+        event_address,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="eventDetail != null">
+        event_detail,
+      </if>
+      <if test="eventImg != null">
+        event_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventUuid != null">
+        #{eventUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCate != null">
+        #{eventCate,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCity != null">
+        #{eventCity,jdbcType=VARCHAR},
+      </if>
+      <if test="eventLocation != null">
+        #{eventLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="eventAddress != null">
+        #{eventAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventDetail != null">
+        #{eventDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eventImg != null">
+        #{eventImg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.terri.hd.eventspro.pojo.UserEvent">
+    <!--@mbg.generated-->
+    update event_user
+    <set>
+      <if test="eventName != null">
+        event_name = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCate != null">
+        event_cate = #{eventCate,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCity != null">
+        event_city = #{eventCity,jdbcType=VARCHAR},
+      </if>
+      <if test="eventLocation != null">
+        event_location = #{eventLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="eventAddress != null">
+        event_address = #{eventAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventDetail != null">
+        event_detail = #{eventDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="eventImg != null">
+        event_img = #{eventImg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where event_uuid = #{eventUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.terri.hd.eventspro.pojo.UserEvent">
+    <!--@mbg.generated-->
+    update event_user
+    set event_name = #{eventName,jdbcType=VARCHAR},
+      event_cate = #{eventCate,jdbcType=VARCHAR},
+      event_city = #{eventCity,jdbcType=VARCHAR},
+      event_location = #{eventLocation,jdbcType=VARCHAR},
+      event_address = #{eventAddress,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      event_detail = #{eventDetail,jdbcType=LONGVARCHAR},
+      event_img = #{eventImg,jdbcType=LONGVARCHAR}
+    where event_uuid = #{eventUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
