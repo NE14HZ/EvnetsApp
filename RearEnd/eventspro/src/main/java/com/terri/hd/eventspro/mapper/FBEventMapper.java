@@ -1,41 +1,41 @@
 package com.terri.hd.eventspro.mapper;
 
-import com.terri.hd.eventspro.entity.Event;
+import com.terri.hd.eventspro.pojo.FBEvent;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
-public interface EventMapper {
+public interface FBEventMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Event record);
+    int insert(FBEvent record);
 
-    Event selectByPrimaryKey(Integer id);
+    FBEvent selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(Event record);
+    int updateByPrimaryKey(FBEvent record);
 
     /**
      * 查询所有活动
      * @return List<Activity>
      */
-    List<Event> findAll();
+    List<FBEvent> queryAll();
 
     /**
      * 根据类别查询活动
      * @param category
      * @return List<Activity>
      */
-    List<Event> findByCate(@Param("category") String category);
+    List<FBEvent> findByCate(@Param("category") String category);
 
     /**
      * 根据城市查询活动
      * @param city
      * @return List<Activity>
      */
-    List<Event> findByCity(@Param("city") String city);
+    List<FBEvent> findByCity(@Param("city") String city);
 
 
 }

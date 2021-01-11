@@ -15,7 +15,7 @@ import java.io.FileOutputStream;
 @RequestMapping("/upload")
 public class AddImgController {
 
-    private static final Logger logger = LoggerFactory.getLogger(EventsController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FBEventController.class);
 
     /**
      * 文件上传
