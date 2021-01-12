@@ -1,10 +1,26 @@
 package com.terri.hd.eventspro.config;
 
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
+
+// 阿里云OSS信息配置类
 public class OssConfig {
-    public static String endpoint = "http://oss-cn-chengdu.aliyuncs.com";
-    public static String accessKeyId = "LTAI4GH1JGpgezz1qTbcyh62";
-    public static String accessKeySecret = "OgVYygKw0YurzHei5zM39kG9tCKEFc";
-    public static String bucketName = "event-lee";
-    public static String fileHost = "event-lee/pics";
-    public static String urlPrefix = "http://event-lee.oss-cn-chengdu.aliyuncs.com";
+
+    public String endpoint;
+
+    public String accessKeyId;
+
+    public String accessKeySecret;
+
+    public String bucketName;
+
+    public String fileHost;
+
+    public String urlPrefix;
+
 }
