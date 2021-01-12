@@ -18,3 +18,7 @@ RearEnd/eventspro/src/main/java/com/terri/.DS_Store
 RearEnd/eventspro/src/main/java/com/terri/hd/.DS_Store
 
 RearEnd/eventspro/src/main/java/com/terri/hd/eventspro/.DS_Store
+
+*.PNG
+
+RearEnd/eventspro/src/main/resources/aliOss.properties

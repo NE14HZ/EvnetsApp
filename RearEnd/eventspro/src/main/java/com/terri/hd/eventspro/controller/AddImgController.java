@@ -1,8 +1,9 @@
 package com.terri.hd.eventspro.controller;
 
-import com.terri.hd.eventspro.utils.AliyunOssUtil;
+import com.terri.hd.eventspro.utils.AliOssUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,9 @@ import java.io.FileOutputStream;
 @RestController
 @RequestMapping("/upload")
 public class AddImgController {
+
+    @Autowired
+    private AliOssUtil ossUtil;
 
     private static final Logger logger = LoggerFactory.getLogger(FBEventController.class);
 
@@ -34,7 +38,7 @@ public class AddImgController {
                     os.close();
                     file.transferTo(newFile);
                     //上传到OSS
-                    uploadUrl= AliyunOssUtil.upload(newFile);
+                    uploadUrl= ossUtil.upload(newFile);
                 }
             }
         }catch (Exception ex){
