@@ -13,7 +13,12 @@ public interface FBEventMapper {
 
     int insert(FBEvent record);
 
-    FBEvent selectByPrimaryKey(Integer id);
+    /**
+     * 根据id获取活动信息
+     * @param id
+     * @return
+     */
+    FBEvent queryByPrimaryKey(Integer id);
 
     int updateByPrimaryKey(FBEvent record);
 

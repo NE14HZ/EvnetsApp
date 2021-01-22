@@ -6,6 +6,8 @@ import com.terri.hd.eventspro.service.UserEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: Gaoquan Li
  * @Date: 2021/1/10 下午9:56
@@ -19,5 +21,15 @@ public class UserEventServiceImpl implements UserEventService {
     @Override
     public int insert(UserEvent record) {
         return userEventMapper.insert(record);
+    }
+
+    @Override
+    public List<UserEvent> selectByOpenId(String openId) {
+        return userEventMapper.selectByOpenId(openId);
+    }
+
+    @Override
+    public int deleteByUUID(String eventUuid) {
+        return userEventMapper.deleteByUUID(eventUuid);
     }
 }

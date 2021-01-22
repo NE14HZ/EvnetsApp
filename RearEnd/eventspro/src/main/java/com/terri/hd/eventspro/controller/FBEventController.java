@@ -26,13 +26,19 @@ public class FBEventController {
         return "Hello World";
     }
 
-    @GetMapping("/api/queryAll")
+    @GetMapping("/api/fb/queryAll")
     public List<FBEvent> queryAll(){
 
         List<FBEvent> list;
         list = eventService.queryAll();
 
         return list;
+    }
+
+    @GetMapping("/api/fb/queryById/{id}")
+    public FBEvent queryById(@PathVariable Integer id) {
+
+        return eventService.queryByPrimaryKey(id);
     }
 
     @RequestMapping("/api/getByCate")

@@ -1,6 +1,9 @@
 package com.terri.hd.eventspro.service;
 
 import com.terri.hd.eventspro.pojo.UserEvent;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @Author: Gaoquan Li
@@ -14,4 +17,18 @@ public interface UserEventService {
      * @return insert count
      */
     int insert(UserEvent record);
+
+    /**
+     * select by user's openId
+     * @param openId user's openId
+     * @return all event user published
+     */
+    List<UserEvent> selectByOpenId(@Param("openId") String openId);
+
+    /**
+     * delete by primary key
+     * @param eventUuid primaryKey
+     * @return deleteCount
+     */
+    int deleteByUUID(String eventUuid);
 }
