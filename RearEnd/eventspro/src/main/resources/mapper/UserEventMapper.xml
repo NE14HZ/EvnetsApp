@@ -14,12 +14,13 @@
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="event_detail" jdbcType="LONGVARCHAR" property="eventDetail" />
     <result column="event_img" jdbcType="LONGVARCHAR" property="eventImg" />
-    <result column="publisher_openid" jdbcType="VARCHAR" property="publisherOpenId" />
+    <result column="publisher_email" jdbcType="VARCHAR" property="publisherEmail"/>
+    <result column="publisher_openid" jdbcType="VARCHAR" property="publisherOpenId"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     event_uuid, event_name, event_cate, event_city, event_location, event_address, start_time, 
-    end_time, event_detail, event_img
+    end_time, event_detail, event_img, publisher_email, publisher_openid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -28,7 +29,16 @@
     from event_user
     where event_uuid = #{eventUuid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+  <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from acitvity_db.event_user
+    where publisher_openid = #{openId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByUUID" parameterType="java.lang.String">
     <!--@mbg.generated-->
     delete from event_user
     where event_uuid = #{eventUuid,jdbcType=VARCHAR}
@@ -38,11 +48,11 @@
     insert into event_user (event_uuid, event_name, event_cate,
       event_city, event_location, event_address, 
       start_time, end_time, event_detail, 
-      event_img, publisher_openid)
+      event_img, publisher_email, publisher_openid)
     values (#{eventUuid,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, #{eventCate,jdbcType=VARCHAR}, 
       #{eventCity,jdbcType=VARCHAR}, #{eventLocation,jdbcType=VARCHAR}, #{eventAddress,jdbcType=VARCHAR}, 
       #{startTime,jdbcType=DATETIMEOFFSET}, #{endTime,jdbcType=DATETIMEOFFSET}, #{eventDetail,jdbcType=LONGVARCHAR},
-      #{eventImg,jdbcType=LONGVARCHAR}, #{publisherOpenId,jdbcType=VARCHAR})
+      #{eventImg,jdbcType=LONGVARCHAR}, #{publisherEmail,jdbcType=VARCHAR}, #{publisherOpenId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.terri.hd.eventspro.pojo.UserEvent">
     <!--@mbg.generated-->

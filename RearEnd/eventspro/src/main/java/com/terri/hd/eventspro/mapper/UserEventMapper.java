@@ -2,6 +2,9 @@ package com.terri.hd.eventspro.mapper;
 
 import com.terri.hd.eventspro.pojo.UserEvent;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @Author: Gaoquan Li
@@ -14,7 +17,7 @@ public interface UserEventMapper {
      * @param eventUuid primaryKey
      * @return deleteCount
      */
-    int deleteByPrimaryKey(String eventUuid);
+    int deleteByUUID(String eventUuid);
 
     /**
      * insert record to table
@@ -36,6 +39,13 @@ public interface UserEventMapper {
      * @return object by primary key
      */
     UserEvent selectByPrimaryKey(String eventUuid);
+
+    /**
+     * select by user's openId
+     * @param openId user's openId
+     * @return all event user published
+     */
+    List<UserEvent> selectByOpenId(@Param("openId") String openId);
 
     /**
      * update record selective

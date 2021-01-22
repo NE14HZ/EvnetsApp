@@ -18,6 +18,15 @@ public class FBEventServiceImpl implements FBEventService {
     private FBEventMapper FBEventMapper;
 
     @Override
+    public FBEvent queryByPrimaryKey(Integer id) {
+        if (id > 0) {
+            return FBEventMapper.queryByPrimaryKey(id);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public List<FBEvent> queryAll() {
 
         List<FBEvent> list = null;

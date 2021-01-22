@@ -35,5 +35,7 @@ public class UserEvent {
 
     private String eventImg;
 
+    private String publisherEmail;
+
     private String publisherOpenId;
 }

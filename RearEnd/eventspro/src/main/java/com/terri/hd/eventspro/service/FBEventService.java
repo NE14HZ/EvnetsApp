@@ -7,6 +7,13 @@ import java.util.List;
 public interface FBEventService {
 
     /**
+     * 根据id获取活动信息
+     * @param id
+     * @return
+     */
+    FBEvent queryByPrimaryKey(Integer id);
+
+    /**
      * 查询所有活动
      * @return List<Activity>
      */
