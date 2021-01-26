@@ -6,7 +6,7 @@ import java.util.UUID;
  * @Author: Gaoquan Li
  * @Date: 2021/1/10 下午8:47
  */
-public class UuidUtil {
+public class UUIDUtil {
 
     String uuid = null;
 
