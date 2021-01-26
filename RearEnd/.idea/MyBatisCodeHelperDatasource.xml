@@ -44,6 +44,18 @@
                 </TableGenerateConfig>
               </value>
             </entry>
+            <entry key="acitvity_db:event_user_col">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="" />
+                  <option name="javaModelName" value="UserEventCol" />
+                  <option name="moduleName" value="eventspro" />
+                  <option name="sequenceColumn" value="" />
+                  <option name="sequenceId" value="" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
             <entry key="acitvity_db:user">
               <value>
                 <TableGenerateConfig>

@@ -1,9 +1,11 @@
 package com.terri.hd.eventspro.controller;
 
 import com.terri.hd.eventspro.pojo.UserEvent;
+import com.terri.hd.eventspro.pojo.UserEventCol;
+import com.terri.hd.eventspro.service.impl.UserEventColServiceImpl;
 import com.terri.hd.eventspro.service.impl.UserEventServiceImpl;
 import com.terri.hd.eventspro.utils.DateUtil;
-import com.terri.hd.eventspro.utils.UuidUtil;
+import com.terri.hd.eventspro.utils.UUIDUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class UserEventController {
     @Autowired
     private UserEventServiceImpl userEventService;
 
+    @Autowired
+    private UserEventColServiceImpl userEventColService;
+
     private static final Logger logger = LoggerFactory.getLogger(UserEventController.class);
 
     @PostMapping("/api/user/addUserEvent")
@@ -35,7 +40,7 @@ public class UserEventController {
         LocalDateTime endTime = dateUtil.getDate((String) event.get("endTime"));
 
         UserEvent userEvent = new UserEvent();
-        userEvent.setEventUuid(new UuidUtil().getUuid());
+        userEvent.setEventUuid(new UUIDUtil().getUuid());
         userEvent.setEventName((String) event.get("eventName"));
         userEvent.setEventCate((String) event.get("eventCate"));
         userEvent.setEventCity((String) event.get("eventCity"));
@@ -77,5 +82,38 @@ public class UserEventController {
             logger.error("删除异常");
         }
         return i;
+    }
+
+    @PostMapping("/api/user/collectEvent")
+    public String collectEvent(@RequestBody Map<String,Object> event) {
+
+        UserEventCol userEventCol = new UserEventCol();
+
+        userEventCol.setUuid(new UUIDUtil().getUuid());
+        userEventCol.setUserOpenid((String) event.get("userOpenid"));
+        userEventCol.setEventId((String) event.get("eventId"));
+        userEventCol.setEventName((String) event.get("eventName"));
+        userEventCol.setEventCate((String) event.get("eventCate"));
+        userEventCol.setEventCity((String) event.get("eventCity"));
+        userEventCol.setEventLocation((String) event.get("eventLocation"));
+        userEventCol.setEventAddress((String) event.get("eventAddress"));
+
+        userEventColService.insert(userEventCol);
+
+        return "ok";
+    }
+
+    @GetMapping("/api/user/getEventId/{openid}")
+    public String[] queryEventId(@PathVariable String openid) {
+
+        String[] eventId = userEventColService.selectEventByOpenId(openid);
+
+        if (eventId != null) {
+            return eventId;
+        } else {
+            logger.error("未找到eventId");
+            return new String[0];
+        }
+
     }
 }
