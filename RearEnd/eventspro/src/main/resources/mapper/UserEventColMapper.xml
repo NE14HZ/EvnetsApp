@@ -12,11 +12,12 @@
     <result column="event_city" jdbcType="VARCHAR" property="eventCity" />
     <result column="event_location" jdbcType="VARCHAR" property="eventLocation" />
     <result column="event_address" jdbcType="VARCHAR" property="eventAddress" />
+    <result column="event_img" jdbcType="LONGVARCHAR" property="eventImg" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     uuid, user_openid, event_id, event_name, event_cate, event_city, event_location, 
-    event_address
+    event_address, event_img
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -25,20 +26,20 @@
     from event_user_col
     where uuid = #{uuid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByEventIdAndOpenid" parameterType="java.lang.String">
     <!--@mbg.generated-->
     delete from event_user_col
-    where uuid = #{uuid,jdbcType=VARCHAR}
+    where event_id = #{param1,jdbcType=VARCHAR} and user_openid = #{param2,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.terri.hd.eventspro.pojo.UserEventCol">
     <!--@mbg.generated-->
     insert into event_user_col (uuid, user_openid, event_id, 
       event_name, event_cate, event_city, 
-      event_location, event_address
+      event_location, event_address, event_img
       )
     values (#{uuid,jdbcType=VARCHAR}, #{userOpenid,jdbcType=VARCHAR}, #{eventId,jdbcType=VARCHAR}, 
       #{eventName,jdbcType=VARCHAR}, #{eventCate,jdbcType=VARCHAR}, #{eventCity,jdbcType=VARCHAR}, 
-      #{eventLocation,jdbcType=VARCHAR}, #{eventAddress,jdbcType=VARCHAR}
+      #{eventLocation,jdbcType=VARCHAR}, #{eventAddress,jdbcType=VARCHAR}, #{eventImg,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.terri.hd.eventspro.pojo.UserEventCol">
@@ -140,5 +141,9 @@
 
   <select id="selectEventByOpenId" resultType="java.lang.String">
     select event_id from event_user_col where user_openid = #{openId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAllCollected" resultMap="BaseResultMap" parameterType="string">
+    select * from event_user_col where user_openid = #{openId,jdbcType=VARCHAR}
   </select>
 </mapper>

@@ -23,7 +23,14 @@ public interface UserEventService {
      * @param openId user's openId
      * @return all event user published
      */
-    List<UserEvent> selectByOpenId(@Param("openId") String openId);
+    List<UserEvent> selectByOpenId(String openId);
+
+    /**
+     * select by primary key
+     * @param eventUuid primary key
+     * @return object by primary key
+     */
+    UserEvent selectByPrimaryKey(String eventUuid);
 
     /**
      * delete by primary key
