@@ -84,6 +84,11 @@ public class UserEventController {
         return i;
     }
 
+    @GetMapping("/api/user/queryEventByEventId/{eventUuid}")
+    public UserEvent getEventByEventId(@PathVariable String eventUuid) {
+        return userEventService.selectByPrimaryKey(eventUuid);
+    }
+
     @PostMapping("/api/user/collectEvent")
     public String collectEvent(@RequestBody Map<String,Object> event) {
 
@@ -97,6 +102,7 @@ public class UserEventController {
         userEventCol.setEventCity((String) event.get("eventCity"));
         userEventCol.setEventLocation((String) event.get("eventLocation"));
         userEventCol.setEventAddress((String) event.get("eventAddress"));
+        userEventCol.setEventImg((String) event.get("eventImg"));
 
         userEventColService.insert(userEventCol);
 
@@ -115,5 +121,34 @@ public class UserEventController {
             return new String[0];
         }
 
+    }
+
+    @GetMapping("/api/user/queryAllColEvent/{openid}")
+    public List<UserEventCol> queryAllColEvent(@PathVariable String openid) {
+
+        List<UserEventCol> collected = userEventColService.selectAllCollected(openid);
+
+        if (collected == null) {
+            logger.warn("没有用户收藏的活动");
+        }
+
+        return collected;
+    }
+
+    @DeleteMapping("/api/user/deleteColEvent/{eventId}/{openid}")
+    public Integer deleteColEvent(@PathVariable String eventId,@PathVariable String openid) {
+
+        if (eventId == null || openid == null) {
+            logger.error("删除收藏活动请求参数异常！");
+            return 0;
+        } else {
+            int i = userEventColService.deleteByEventIdAndOpenid(eventId, openid);
+            if (i != 0) {
+                logger.info("删除收藏活动成功");
+            } else {
+                logger.warn("删除收藏活动失败");
+            }
+            return i;
+        }
     }
 }

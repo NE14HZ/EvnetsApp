@@ -38,7 +38,7 @@ public interface UserEventMapper {
      * @param eventUuid primary key
      * @return object by primary key
      */
-    UserEvent selectByPrimaryKey(String eventUuid);
+    UserEvent selectByPrimaryKey(@Param("eventUuid") String eventUuid);
 
     /**
      * select by user's openId

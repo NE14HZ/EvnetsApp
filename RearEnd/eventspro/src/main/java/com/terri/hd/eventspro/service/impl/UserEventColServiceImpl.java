@@ -6,6 +6,8 @@ import com.terri.hd.eventspro.service.UserEventColService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Author: Gaoquan Li
  * @Date: 2021/1/26 上午12:04
@@ -24,5 +26,15 @@ public class UserEventColServiceImpl implements UserEventColService {
     @Override
     public String[] selectEventByOpenId(String opnId) {
         return eventColMapper.selectEventByOpenId(opnId);
+    }
+
+    @Override
+    public List<UserEventCol> selectAllCollected(String openid) {
+        return eventColMapper.selectAllCollected(openid);
+    }
+
+    @Override
+    public int deleteByEventIdAndOpenid(String eventId, String openid) {
+        return eventColMapper.deleteByEventIdAndOpenid(eventId, openid);
     }
 }

@@ -29,4 +29,6 @@ public class UserEventCol {
 
     private String eventAddress;
 
+    private String eventImg;
+
 }

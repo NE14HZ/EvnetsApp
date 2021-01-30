@@ -4,6 +4,8 @@ import com.terri.hd.eventspro.pojo.UserEventCol;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
 * @Author: Gaoquan Li
 * @Date: 2021/1/25 下午11:22
@@ -12,10 +14,10 @@ import org.apache.ibatis.annotations.Param;
 public interface UserEventColMapper {
     /**
      * delete by primary key
-     * @param uuid primaryKey
+     * @param eventId,openid event's id and user's openid
      * @return deleteCount
      */
-    int deleteByPrimaryKey(String uuid);
+    int deleteByEventIdAndOpenid(String eventId, String openid);
 
     /**
      * insert record to table
@@ -58,4 +60,10 @@ public interface UserEventColMapper {
      * @return event's id
      */
     String[] selectEventByOpenId(@Param("openId") String opnId);
+
+    /**
+     * query all collected event by user's openid
+     * @return all collected event
+     */
+    List<UserEventCol> selectAllCollected(@Param("openId") String opnId);
 }
