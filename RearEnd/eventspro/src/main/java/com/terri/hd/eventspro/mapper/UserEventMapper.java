@@ -48,6 +48,12 @@ public interface UserEventMapper {
     List<UserEvent> selectByOpenId(@Param("openId") String openId);
 
     /**
+     * select all events published by users
+     * @return all events published by users
+     */
+    List<UserEvent> selectAllEvent();
+
+    /**
      * update record selective
      * @param record the updated record
      * @return update count

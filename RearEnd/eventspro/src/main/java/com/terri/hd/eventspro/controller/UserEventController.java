@@ -89,6 +89,17 @@ public class UserEventController {
         return userEventService.selectByPrimaryKey(eventUuid);
     }
 
+    @GetMapping("/api/user/queryAllPbEvent")
+    public List<UserEvent> queryAllPbEvent() {
+        List<UserEvent> events = userEventService.selectAllEvent();
+
+        if (events == null) {
+            logger.warn("无用户发布活动");
+        }
+
+        return events;
+    }
+
     @PostMapping("/api/user/collectEvent")
     public String collectEvent(@RequestBody Map<String,Object> event) {
 
@@ -120,7 +131,6 @@ public class UserEventController {
             logger.error("未找到eventId");
             return new String[0];
         }
-
     }
 
     @GetMapping("/api/user/queryAllColEvent/{openid}")

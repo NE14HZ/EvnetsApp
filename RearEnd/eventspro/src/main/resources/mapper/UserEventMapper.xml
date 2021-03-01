@@ -170,4 +170,9 @@
       event_img = #{eventImg,jdbcType=LONGVARCHAR}
     where event_uuid = #{eventUuid,jdbcType=VARCHAR}
   </update>
+  <select id="selectAllEvent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from acitvity_db.event_user
+  </select>
 </mapper>

@@ -29,6 +29,11 @@ public class UserEventServiceImpl implements UserEventService {
     }
 
     @Override
+    public List<UserEvent> selectAllEvent() {
+        return userEventMapper.selectAllEvent();
+    }
+
+    @Override
     public UserEvent selectByPrimaryKey(String eventUuid) {
         return userEventMapper.selectByPrimaryKey(eventUuid);
     }
